@@ -4,6 +4,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   const length = document.getElementById('length');
   const generateButton = document.getElementById('generateButton');
   const copyButton = document.getElementById('copyButton');
+  const checkBoxAlphabetOnly = document.getElementById('checkBoxAlphabetOnly');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
@@ -18,12 +19,18 @@ document.getElementsByTagName('body')[0].onload = e => {
   };
 
   generateButton.onclick = e => {
+
     let password = '';
+    const include = [[47, 58], [64, 91], [96, 123]];
+
+    if(checkBoxAlphabetOnly.checked)
+      include.shift();
+
     for(let i=0;i<length.value;i++){
       let char;
       do {
         char = Math.floor(Math.random() * 128);
-      }while(!char.between([47, 58], [64, 91], [96, 123]));
+      }while(!char.between(include));
       password += String.fromCharCode(char);
     }
     passwordInput.value = password;
