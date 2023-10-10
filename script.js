@@ -44,7 +44,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   copyButton.onclick = e => {
     passwordInput.select();
     passwordInput.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText('test');
+    navigator.clipboard.writeText(passwordInput.value);
   }
 
 };
