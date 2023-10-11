@@ -5,6 +5,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   const generateButton = document.getElementById('generateButton');
   const copyButton = document.getElementById('copyButton');
   const checkBoxAlphabetOnly = document.getElementById('checkBoxAlphabetOnly');
+  const copiedAlert = document.getElementById('copiedAlert');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
@@ -42,6 +43,8 @@ document.getElementsByTagName('body')[0].onload = e => {
   };
 
   copyButton.onclick = e => {
+    copiedAlert.style.display = 'none';
+    setTimeout(() => copiedAlert.style.display = 'inline', 300);
     passwordInput.select();
     passwordInput.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(passwordInput.value);
