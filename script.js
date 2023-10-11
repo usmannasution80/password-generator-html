@@ -5,12 +5,14 @@ document.getElementsByTagName('body')[0].onload = e => {
   const generateButton = document.getElementById('generateButton');
   const copyButton = document.getElementById('copyButton');
   const checkBoxAlphabetOnly = document.getElementById('checkBoxAlphabetOnly');
+  const checkBoxInsertBasicSymbol = document.getElementById('checkBoxInsertBasicSymbol');
   const copiedAlert = document.getElementById('copiedAlert');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
-      for(let i=0;i<arguments.length;i++){
-        let [min, max] = arguments[i];
+      const list = min;
+      for(let i=0;i<list.length;i++){
+        let [min, max] = list[i];
         if(this.between(min, max))
           return true;
       }
@@ -26,6 +28,15 @@ document.getElementsByTagName('body')[0].onload = e => {
 
     if(checkBoxAlphabetOnly.checked)
       include.shift();
+
+    if(checkBoxInsertBasicSymbol.checked){
+      include.push(
+        [32, 48],
+        [57, 65],
+        [90, 97],
+        [122, 127]
+      );
+    }
 
     for(let i=0;i<length.value;i++){
       let char;
