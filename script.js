@@ -7,6 +7,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   const checkBoxNoNumeric = document.getElementById('checkBoxNoNumeric');
   const checkBoxBasicSymbols = document.getElementById('checkBoxBasicSymbols');
   const copiedAlert = document.getElementById('copiedAlert');
+  const checkBoxHiragana = document.getElementById('checkBoxHiragana');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
@@ -24,6 +25,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   generateButton.onclick = e => {
 
     let password = '';
+    let max = 128;
     const include = [[47, 58], [64, 91], [96, 123]];
 
     if(checkBoxNoNumeric.checked)
@@ -37,11 +39,17 @@ document.getElementsByTagName('body')[0].onload = e => {
         [122, 127]
       );
     }
+    if(checkBoxHiragana.checked){
+      include.push(
+        [12353, 12438]
+      );
+      max = 12438;
+    }
 
     for(let i=0;i<length.value;i++){
       let char;
       do {
-        char = Math.floor(Math.random() * 128);
+        char = Math.floor(Math.random() * (max + 1));
       }while(!char.between(include));
       password += String.fromCharCode(char);
     }
