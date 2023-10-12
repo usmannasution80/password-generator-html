@@ -4,8 +4,8 @@ document.getElementsByTagName('body')[0].onload = e => {
   const length = document.getElementById('length');
   const generateButton = document.getElementById('generateButton');
   const copyButton = document.getElementById('copyButton');
-  const checkBoxAlphabetOnly = document.getElementById('checkBoxAlphabetOnly');
-  const checkBoxInsertBasicSymbol = document.getElementById('checkBoxInsertBasicSymbol');
+  const checkBoxNoNumeric = document.getElementById('checkBoxNoNumeric');
+  const checkBoxBasicSymbols = document.getElementById('checkBoxBasicSymbols');
   const copiedAlert = document.getElementById('copiedAlert');
 
   Number.prototype.between = function(min, max){
@@ -26,10 +26,10 @@ document.getElementsByTagName('body')[0].onload = e => {
     let password = '';
     const include = [[47, 58], [64, 91], [96, 123]];
 
-    if(checkBoxAlphabetOnly.checked)
+    if(checkBoxNoNumeric.checked)
       include.shift();
 
-    if(checkBoxInsertBasicSymbol.checked){
+    if(checkBoxBasicSymbols.checked){
       include.push(
         [32, 48],
         [57, 65],
