@@ -8,6 +8,7 @@ document.getElementsByTagName('body')[0].onload = e => {
   const checkBoxBasicSymbols = document.getElementById('checkBoxBasicSymbols');
   const copiedAlert = document.getElementById('copiedAlert');
   const checkBoxHiragana = document.getElementById('checkBoxHiragana');
+  const checkBoxKatakana = document.getElementById('checkBoxKatakana');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
@@ -44,6 +45,12 @@ document.getElementsByTagName('body')[0].onload = e => {
         [12352, 12439]
       );
       max = 12438;
+    }
+    if(checkBoxKatakana.checked){
+      include.push(
+        [12448, 12539]
+      );
+      max = 12539;
     }
 
     for(let i=0;i<length.value;i++){
