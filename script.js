@@ -41,7 +41,7 @@ document.getElementsByTagName('body')[0].onload = e => {
     }
     if(checkBoxHiragana.checked){
       include.push(
-        [12353, 12438]
+        [12352, 12439]
       );
       max = 12438;
     }
