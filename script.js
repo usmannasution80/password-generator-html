@@ -1,5 +1,7 @@
 document.getElementsByTagName('body')[0].onload = e => {
 
+  const baseWordContainer = document.getElementById('baseWordContainer');
+  const baseWordInput = document.getElementById('baseWord');
   const passwordInput = document.getElementById('password');
   const length = document.getElementById('length');
   const generateButton = document.getElementById('generateButton');
@@ -9,6 +11,8 @@ document.getElementsByTagName('body')[0].onload = e => {
   const copiedAlert = document.getElementById('copiedAlert');
   const checkBoxHiragana = document.getElementById('checkBoxHiragana');
   const checkBoxKatakana = document.getElementById('checkBoxKatakana');
+  const checkBoxWordWithInvisibleCharacters = document.getElementById('checkBoxWordWithInvisibleCharacters');
+  const notWordWithInvisibleCharacters = document.getElementById('notWordWithInvisibleCharacters');
 
   Number.prototype.between = function(min, max){
     if(Array.isArray(min)){
@@ -26,41 +30,57 @@ document.getElementsByTagName('body')[0].onload = e => {
   generateButton.onclick = e => {
 
     let password = '';
-    let max = 128;
-    const include = [[47, 58], [64, 91], [96, 123]];
 
-    if(checkBoxNoNumeric.checked)
-      include.shift();
+    if(!checkBoxWordWithInvisibleCharacters.checked){
 
-    if(checkBoxBasicSymbols.checked){
-      include.push(
-        [32, 48],
-        [57, 65],
-        [90, 97],
-        [122, 127]
-      );
-    }
-    if(checkBoxHiragana.checked){
-      include.push(
-        [12352, 12439]
-      );
-      max = 12438;
-    }
-    if(checkBoxKatakana.checked){
-      include.push(
-        [12448, 12539]
-      );
-      max = 12539;
+      let max = 128;
+      const include = [[47, 58], [64, 91], [96, 123]];
+
+      if(checkBoxNoNumeric.checked)
+        include.shift();
+
+      if(checkBoxBasicSymbols.checked){
+        include.push(
+          [32, 48],
+          [57, 65],
+          [90, 97],
+          [122, 127]
+        );
+      }
+      if(checkBoxHiragana.checked){
+        include.push(
+          [12352, 12439]
+        );
+        max = 12438;
+      }
+      if(checkBoxKatakana.checked){
+        include.push(
+          [12448, 12539]
+        );
+        max = 12539;
+      }
+
+      for(let i=0;i<length.value;i++){
+        let char;
+        do {
+          char = Math.floor(Math.random() * (max + 1));
+        }while(!char.between(include));
+        password += String.fromCharCode(char);
+      }
+      passwordInput.value = password;
+      return;
     }
 
-    for(let i=0;i<length.value;i++){
-      let char;
-      do {
-        char = Math.floor(Math.random() * (max + 1));
-      }while(!char.between(include));
-      password += String.fromCharCode(char);
+    for(let i = 1; i <= baseWordInput.value.length; i++){
+      let max = length.value - i - password.length;
+      if(i !== baseWordInput.length)
+        max = Math.floor(Math.random() * max) + 1;
+      password += baseWordInput.value.charAt(i-1);
+      for(let j = 1; j <= max; j++)
+        password += '‎';
     }
     passwordInput.value = password;
+    console.log(password);
   };
 
   length.onblur = e => {
@@ -75,5 +95,10 @@ document.getElementsByTagName('body')[0].onload = e => {
     passwordInput.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(passwordInput.value);
   }
+
+  checkBoxWordWithInvisibleCharacters.onchange = e => {
+    notWordWithInvisibleCharacters.style.display = e.target.checked ? 'none' : 'block';
+    baseWordContainer.style.display = e.target.checked ? 'block' : 'none';
+  };
 
 };

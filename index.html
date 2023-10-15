@@ -7,6 +7,12 @@
   </head>
   <body>
 
+    <div id="baseWordContainer" style="display: none">
+      <label for="baseWord">Base Word :</label>
+      <br/>
+      <input id="baseWord" type="text"/>
+    </div>
+
     <label for="password">Password :</label>
     <br/>
     <input id="password" type="text"/>
@@ -25,20 +31,26 @@
 
     <br/>
 
-    <input type="checkbox" id="checkBoxNoNumeric"/>
-    <label for="checkBoxNoNumeric">No Numeric</label>
-    <br/>
+    <div id="notWordWithInvisibleCharacters">
 
-    <input type="checkbox" id="checkBoxBasicSymbols"/>
-    <label for="checkBoxBasicSymbols">Basic Symbols</label>
-    <br/>
+      <input type="checkbox" id="checkBoxNoNumeric"/>
+      <label for="checkBoxNoNumeric">No Numeric</label>
+      <br/>
 
-    <input type="checkbox" id="checkBoxHiragana"/>
-    <label for="checkBoxHiragana">Hiragana</label>
-    <br/>
+      <input type="checkbox" id="checkBoxBasicSymbols"/>
+      <label for="checkBoxBasicSymbols">Basic Symbols</label>
+      <br/>
 
-    <input type="checkbox" id="checkBoxKatakana"/>
-    <label for="checkBoxKatakana">Katakana</label>
+      <input type="checkbox" id="checkBoxHiragana"/>
+      <label for="checkBoxHiragana">Hiragana</label>
+      <br/>
+
+      <input type="checkbox" id="checkBoxKatakana"/>
+      <label for="checkBoxKatakana">Katakana</label>
+    </div>
+
+    <input type="checkbox" id="checkBoxWordWithInvisibleCharacters"/>
+    <label for="checkBoxWordWithInvisibleCharacters">Word With Invisible Characters</label>
 
     <script type="text/javascript" src="./script.js"></script>
 
