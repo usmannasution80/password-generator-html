@@ -34,13 +34,13 @@ document.getElementsByTagName('body')[0].onload = e => {
     if(!checkBoxWordWithInvisibleCharacters.checked){
 
       let max = 128;
-      const include = [[47, 58], [64, 91], [96, 123]];
+      const chars = [[47, 58], [64, 91], [96, 123]];
 
       if(checkBoxNoNumeric.checked)
-        include.shift();
+        chars.shift();
 
       if(checkBoxBasicSymbols.checked){
-        include.push(
+        chars.push(
           [32, 48],
           [57, 65],
           [90, 97],
@@ -48,13 +48,13 @@ document.getElementsByTagName('body')[0].onload = e => {
         );
       }
       if(checkBoxHiragana.checked){
-        include.push(
+        chars.push(
           [12352, 12439]
         );
         max = 12438;
       }
       if(checkBoxKatakana.checked){
-        include.push(
+        chars.push(
           [12448, 12539]
         );
         max = 12539;
@@ -64,7 +64,7 @@ document.getElementsByTagName('body')[0].onload = e => {
         let char;
         do {
           char = Math.floor(Math.random() * (max + 1));
-        }while(!char.between(include));
+        }while(!char.between(chars));
         password += String.fromCharCode(char);
       }
       passwordInput.value = password;
