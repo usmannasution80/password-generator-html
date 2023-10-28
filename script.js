@@ -61,14 +61,12 @@ document.getElementsByTagName('body')[0].onload = e => {
       }
 
       for(let i=0;i<length.value;i++){
-        let char;
-        do {
-          char = Math.floor(Math.random() * (max + 1));
-        }while(!char.between(chars));
+        let idx = Math.floor(Math.random() * chars.length);
+        let [min, max] = chars[idx];
+        let char = Math.floor(Math.random() * (max - min + 1) + min);
         password += String.fromCharCode(char);
       }
       passwordInput.value = password;
-      return;
     }
 
     for(let i = 1; i <= baseWordInput.value.length; i++){
