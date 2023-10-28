@@ -80,7 +80,6 @@ document.getElementsByTagName('body')[0].onload = e => {
         password += '‎';
     }
     passwordInput.value = password;
-    console.log(password);
   };
 
   length.onblur = e => {
