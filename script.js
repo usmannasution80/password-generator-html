@@ -14,19 +14,6 @@ document.getElementsByTagName('body')[0].onload = e => {
   const checkBoxWordWithInvisibleCharacters = document.getElementById('checkBoxWordWithInvisibleCharacters');
   const notWordWithInvisibleCharacters = document.getElementById('notWordWithInvisibleCharacters');
 
-  Number.prototype.between = function(min, max){
-    if(Array.isArray(min)){
-      const list = min;
-      for(let i=0;i<list.length;i++){
-        let [min, max] = list[i];
-        if(this.between(min, max))
-          return true;
-      }
-      return false;
-    }
-    return this.valueOf() > min && this.valueOf() < max;
-  };
-
   generateButton.onclick = e => {
 
     let password = '';
