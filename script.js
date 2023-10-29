@@ -34,12 +34,14 @@ document.getElementsByTagName('body')[0].onload = e => {
           [122, 127]
         );
       }
+
       if(checkBoxHiragana.checked){
         chars.push(
           [12352, 12439]
         );
         max = 12438;
       }
+
       if(checkBoxKatakana.checked){
         chars.push(
           [12448, 12539]
@@ -53,7 +55,9 @@ document.getElementsByTagName('body')[0].onload = e => {
         let char = Math.floor(Math.random() * (max - min + 1) + min);
         password += String.fromCharCode(char);
       }
+
       passwordInput.value = password;
+
     }
 
     for(let i = 1; i <= baseWordInput.value.length; i++){
